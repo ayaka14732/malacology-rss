@@ -1,15 +1,26 @@
 import json
-import os
 import requests
+import sys
 from urllib.parse import urlencode, quote_plus
 
-BOT_TOKEN = os.environ['BOT_TOKEN']
-CHAT_ID = os.environ['CHAT_ID']
+def load_config(path):
+    with open(path) as f:
+        config = json.load(f)
+    bot_token = config['BOT_TOKEN']
+    chat_id = config['CHAT_ID']
+    return bot_token, chat_id
 
-last_day = 394
+
+BOT_TOKEN, CHAT_ID = load_config('config.json')
+
+if len(sys.argv) != 2:
+    print('Usage: python send.py <last_day>', file=sys.stderr)
+    exit(-1)
+
+last_day = int(sys.argv[1])
 
 def send(text):
-    prefix = 'https://api.telegram.org/{BOT_TOKEN}/sendMessage?'
+    prefix = f'https://api.telegram.org/{BOT_TOKEN}/sendMessage?'
     payload = {
         'chat_id': int(CHAT_ID),
         'text': text,

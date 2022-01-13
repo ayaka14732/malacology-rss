@@ -27,7 +27,7 @@ with open('index.xml') as f:
 last_day_id = 0
 
 with open('data.jsonl', 'w') as f:
-    for item in reversed(ET.ElementTree(ET.fromstring(s.encode('utf-8'))).getroot().findall('./channel/item')):
+    for item in reversed(ET.ElementTree(ET.fromstring(s)).getroot().findall('./channel/item')):
         text = item.find('description').text
         pub_date = item.find('pubDate').text
 
@@ -62,7 +62,7 @@ with open('data.jsonl', 'w') as f:
 
         # extract text
         try:
-            gd = re.fullmatch(r'(?P<year>\d+).(?P<month>\d+).(?P<date>\d+)[， ]?(Day ?(?P<day>\d+)|(?P<one_year>1 Year)|Year1 ?Day ?(?P<year1_day>\d+))[,， ](?P<content>[\s\S]+)', text).groupdict()
+            gd = re.fullmatch(r'(?P<year>\d+).(?P<month>\d+).(?P<date>\d+)[， ]?(Day ?(?P<day>\d+)|(?P<one_year>1 Year)|Year1 ?Day ?(?P<year1_day>\d+))[,，。 ](?P<content>[\s\S]+)', text).groupdict()
         except AttributeError:
             raise ValueError(f'Invalid text: {text}')
 
