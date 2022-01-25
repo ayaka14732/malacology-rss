@@ -21,6 +21,9 @@ SKIP_LIST = [
     '\u6211\u6253\u75ab\u82d7\uff0c\u767b\u8bb0\u7684\u8ba9\u6211\u5230\u4e00\u53f7'
 ]
 
+with open('lastpost') as f:
+    last_post = int(f.read())
+
 with open('index.xml') as f:
     s = f.read()
 
@@ -98,6 +101,10 @@ with open('data.jsonl', 'w') as f:
             raise ValueError(f'Wrong day number: expected Day {last_day_id + 1}, but got Day {day_id}')
 
         payload = json.dumps(f'<b>Day {day_id}</b>\n{content}\n{date_val}', ensure_ascii=False)
-        print(payload, file=f)
+        if day_id > last_post:
+            print(payload, file=f)
 
         last_day_id = day_id
+
+with open('lastpost', 'w') as f:
+    print(last_day_id, file=f, end='')

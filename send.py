@@ -1,6 +1,5 @@
 import json
 import requests
-import sys
 from urllib.parse import urlencode, quote_plus
 
 def load_config(path):
@@ -12,12 +11,6 @@ def load_config(path):
 
 
 BOT_TOKEN, CHAT_ID = load_config('config.json')
-
-if len(sys.argv) != 2:
-    print('Usage: python send.py <last_day>', file=sys.stderr)
-    exit(-1)
-
-last_day = int(sys.argv[1])
 
 def send(text):
     prefix = f'https://api.telegram.org/{BOT_TOKEN}/sendMessage?'
@@ -32,7 +25,7 @@ def send(text):
 
 
 with open('data.jsonl') as f:
-    lines = f.readlines()[last_day:]
+    lines = f.readlines()
     for line in lines:
         payload = json.loads(line)
         send(payload)

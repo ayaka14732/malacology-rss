@@ -4,10 +4,11 @@ This repository contains scripts for forwarding [diary.malacology.net](https://d
 
 ## Usage
 
-Create and edit `config.json`, then:
+Create and edit `config.json` and `lastpost`, then:
 
 ```sh
 python download.py
 python process.py
-python send.py <last_day>
+cat data.jsonl
+python send.py
 ```
