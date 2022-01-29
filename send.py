@@ -1,6 +1,9 @@
 import json
 import requests
+import sys
 from urllib.parse import urlencode, quote_plus
+
+jsonl_path = sys.argv[1]
 
 def load_config(path):
     with open(path) as f:
@@ -24,7 +27,7 @@ def send(text):
     r.raise_for_status()
 
 
-with open('data.jsonl') as f:
+with open(jsonl_path) as f:
     lines = f.readlines()
     for line in lines:
         payload = json.loads(line)

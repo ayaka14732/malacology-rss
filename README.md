@@ -7,8 +7,7 @@ This repository contains scripts for forwarding [diary.malacology.net](https://d
 Create and edit `config.json` and `lastpost`, then:
 
 ```sh
-python download.py
-python process.py
-cat data.jsonl
-python send.py
+python download.py index.xml
+python process.py index.xml data.jsonl
+python send.py data.jsonl
 ```

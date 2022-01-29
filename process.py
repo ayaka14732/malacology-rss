@@ -2,8 +2,12 @@ from datetime import datetime, timedelta
 import json
 import locale
 import re
+import sys
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
+
+xml_path = sys.argv[1]
+jsonl_path = sys.argv[2]
 
 locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')  # for parsing date string
 
@@ -24,12 +28,12 @@ SKIP_LIST = [
 with open('lastpost') as f:
     last_post = int(f.read())
 
-with open('index.xml') as f:
+with open(xml_path) as f:
     s = f.read()
 
 last_day_id = 0
 
-with open('data.jsonl', 'w') as f:
+with open(jsonl_path, 'w') as f:
     for item in reversed(ET.ElementTree(ET.fromstring(s)).getroot().findall('./channel/item')):
         text = item.find('description').text
         pub_date = item.find('pubDate').text
