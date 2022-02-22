@@ -48,6 +48,7 @@ with open(jsonl_path, 'w') as f:
 
         # fix bad texts
         text = text \
+            .replace('2022.02.1 Year19 Day74', '2022.02.19 Year1 Day74') \
             .replace('2021.10.10.19', '2021.10.19') \
             .replace('Day3.31 Day114', '2021.3.31 Day114') \
             .replace('\nDay332被错误写成了312，差了20天。', '') \
