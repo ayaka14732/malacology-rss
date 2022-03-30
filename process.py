@@ -49,7 +49,7 @@ with open(jsonl_path, 'w') as f:
         # fix bad texts
         text = text \
             .replace('\n似乎之前计数错误。', '') \
-            .replace('202.03.21 Year1 Day111', '2022.03.21 Year1 Day104') \
+            .replace('2022.03.21 Year1 Day111', '2022.03.21 Year1 Day104') \
             .replace('2022.03.20 Year1 Day110', '2022.03.20 Year1 Day103') \
             .replace('\n之前计数错误，不知道为什么', '') \
             .replace('2022.03.19 Year1 Day109', '2022.03.19 Year1 Day102') \
