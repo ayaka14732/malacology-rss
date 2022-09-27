@@ -8,6 +8,6 @@ Create and edit `config.json` and `lastpost`, then:
 
 ```sh
 python download.py index.xml
-python process.py index.xml data.jsonl
+python process_year2.py index.xml data.jsonl
 python send.py data.jsonl
 ```
